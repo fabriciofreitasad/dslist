@@ -12,33 +12,39 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "tb_game")
-public class Game implements Serializable{
+public class Game implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String title;
-	
+
 	@Column(name = "game_year")
 	private Integer year;
 	private String genre;
-	private String platform;
-	private String imgurl;
-	private String shortDescription;
-	private String longDescription;
+	private String platforms;
+	private Double score;
+	private String imgUrl;
 	
+	@Column(columnDefinition = "TEXT")
+	private String shortDescription;
+	
+	@Column(columnDefinition = "TEXT")
+	private String longDescription;
+
 	public Game() {
 	}
 
-	public Game(Long id, String title, Integer year, String genre, String platform, String imgurl,
+	public Game(Long id, String title, Integer year, String genre, String platforms, Double score, String imgUrl,
 			String shortDescription, String longDescription) {
 		this.id = id;
 		this.title = title;
 		this.year = year;
 		this.genre = genre;
-		this.platform = platform;
-		this.imgurl = imgurl;
+		this.platforms = platforms;
+		this.score = score;
+		this.imgUrl = imgUrl;
 		this.shortDescription = shortDescription;
 		this.longDescription = longDescription;
 	}
@@ -75,20 +81,28 @@ public class Game implements Serializable{
 		this.genre = genre;
 	}
 
-	public String getPlatform() {
-		return platform;
+	public String getPlatforms() {
+		return platforms;
 	}
 
-	public void setPlatform(String platform) {
-		this.platform = platform;
+	public void setPlatforms(String platforms) {
+		this.platforms = platforms;
 	}
 
-	public String getImgurl() {
-		return imgurl;
+	public Double getScore() {
+		return score;
 	}
 
-	public void setImgurl(String imgurl) {
-		this.imgurl = imgurl;
+	public void setScore(Double score) {
+		this.score = score;
+	}
+
+	public String getImgUrl() {
+		return imgUrl;
+	}
+
+	public void setImgUrl(String imgUrl) {
+		this.imgUrl = imgUrl;
 	}
 
 	public String getShortDescription() {
@@ -123,7 +137,5 @@ public class Game implements Serializable{
 		Game other = (Game) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
 
 }
